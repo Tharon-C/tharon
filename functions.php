@@ -138,8 +138,11 @@ function html5blank_header_scripts()
         wp_enqueue_script('benefits-js'); // Enqueue it!
     
     
-      wp_register_script('learning-js', get_template_directory_uri() . '/js/learning.js', array('jquery')); 
+        wp_register_script('learning-js', get_template_directory_uri() . '/js/learning.js', array('jquery')); 
         wp_enqueue_script('learning-js'); // Enqueue it!
+
+        wp_register_script('fullpage-js', get_template_directory_uri() . '/js/jquery.fullPage.js', array('jquery')); 
+        wp_enqueue_script('fullpage-js'); // Enqueue it!
     }
 }
 
@@ -165,8 +168,11 @@ function html5blank_styles()
     wp_register_style('master', get_template_directory_uri() . '/css/master.css', array(), '1.0', 'all');
     wp_enqueue_style('master'); // Enqueue it!
 
-    wp_register_style('hack', get_template_directory_uri() . '/css/hack.css', array(), '1.0', 'all');
-    wp_enqueue_style('hack'); // Enqueue it!
+    wp_register_style('fullpage-css', get_template_directory_uri() . '/css/jquery.fullPage.css', array(), '1.0', 'all');
+    wp_enqueue_style('fullpage-css'); // Enqueue it!
+
+    wp_register_style('examples-css', get_template_directory_uri() . '/css/examples.css', array(), '1.0', 'all');
+    wp_enqueue_style('examples-css'); // Enqueue it!
 
 }
 

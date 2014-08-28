@@ -8,6 +8,10 @@
         <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.png" rel="shortcut icon">
         <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.png" rel="apple-touch-icon-precomposed">
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/venders/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/venders/jquery.easings.min.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.fullPage.js"></script>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
@@ -20,6 +24,17 @@
             tests: {}
         });
         </script>
+
+        <script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['white', '#ccddff', 'white', '#ccddff', 'white'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				menu: '#menu'
+			});
+
+		});
+	</script>
 
 	</head>
 	<body <?php body_class(); ?>>
@@ -55,5 +70,6 @@
                  </div>
 					</nav>
 					<!-- /nav -->
-      
+					
+      			</header>
 			<!-- /header -->

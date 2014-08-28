@@ -16,12 +16,17 @@
 /*======================================================== 
 header 
 ==========================================================*/
+header {
+  z-index: 4;
+  position: fixed;
+  width: 100%; }
+
 /* business information across the top of header */
 .business-info {
-  background: #0386C9;
+  background: #00A9FF;
   padding: 5px; }
   .business-info a {
-    color: #00A9FF; }
+    color: #006BA1; }
   .business-info .widget_text {
     color: white;
     float: right; }
@@ -54,7 +59,8 @@ nav
   position: relative;
   z-index: 10;
   background: #00A9FF;
-  border-bottom: solid 1px lightgrey; }
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.21);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.21); }
   .nav ul {
     margin: 0;
     padding: 0;
@@ -74,7 +80,7 @@ nav
       font-size: 14px;
       position: relative; }
   .nav a:hover {
-    background: #0386C9; }
+    background: #00A9FF; }
   .nav ul.sub-menu {
     display: none; }
     .nav ul.sub-menu a {
@@ -135,7 +141,7 @@ footer items
 footer 
 ================================================================*/
 footer {
-  background: #0386C9;
+  background: #00A9FF;
   text-align: center;
   color: white;
   padding: 10px;
@@ -150,10 +156,10 @@ footer {
   height: 5em; }
 
 .color-1 {
-  background: #0386C9; }
+  background: #00A9FF; }
 
 .color-2 {
-  background: #00A9FF; }
+  background: #006BA1; }
 
 .color-3 {
   background: #e5e5e5; }
@@ -171,7 +177,7 @@ footer {
   typography
   =========================================================================== */
 .headline-1 {
-  color: #00A9FF;
+  color: #006BA1;
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -211,7 +217,7 @@ input, textarea {
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: #0386C9; }
+  border-color: #00A9FF; }
 
 input[type='button'], input[type='submit'], button, .button {
   border: none;
@@ -227,13 +233,13 @@ input[type='button'], input[type='submit'], button, .button {
 
 .btn-primary {
   color: white;
-  background: #00A9FF; }
+  background: #006BA1; }
 
 .btn-primary:hover {
-  background: #00A9FF; }
+  background: #006BA1; }
 
 .btn-primary:focus, .btn-primary:active {
-  background: #00A9FF; }
+  background: #006BA1; }
 
 .btn-secondary {
   color: white;
