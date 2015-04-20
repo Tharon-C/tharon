@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php /* Template Name:Play Page */ get_header(); ?>
 
 	<main role="main">
 		<!-- section -->
@@ -6,10 +6,11 @@
             <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 			<!-- article -->
-			<article class="home-content" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<article class="content" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 				<?php the_content(); ?>
-
+				<?php get_template_part('posts-play'); ?>
+			
 				<br class="clear">
 
 			</article>

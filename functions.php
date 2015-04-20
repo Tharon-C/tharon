@@ -27,18 +27,24 @@ function get_relative_image_path_shortcode($args) {
 	return $upload_dir.'/'.$args['file'];
 }
 
+//Adds page path shortcode. syntax: [page_path id="..."]
 
+add_shortcode('page_path',get_page_path);
+function get_page_path($args) {
+    $id = $args['id'];
+    return get_permalink($id);
+};
 //google fonts 
 function load_fonts() {
-            wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700');
-            wp_enqueue_style( 'open-sans');
+    wp_register_style('open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700');
+    wp_enqueue_style( 'open-sans');
       
     wp_register_style('quicksand', 'http://fonts.googleapis.com/css?family=Quicksand:400,700');
-            wp_enqueue_style( 'quicksand');
+    wp_enqueue_style( 'quicksand');
     
-     wp_register_style('font-awsome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-            wp_enqueue_style( 'font-awsome');
-        }
+    wp_register_style('font-awsome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+    wp_enqueue_style( 'font-awsome');
+    }
 
  
 
@@ -121,7 +127,7 @@ function add_custom_nav_menu($location)
 }
 
 // Load HTML5 Blank scripts (header.php)
-function html5blank_header_scripts()
+function header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
@@ -131,32 +137,30 @@ function html5blank_header_scripts()
         wp_register_script('modernizr', 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js', array(), '2.6.2'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
 
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
-        wp_enqueue_script('html5blankscripts'); // Enqueue it!
-        
-        wp_register_script('benefits-js', get_template_directory_uri() . '/js/benefits.js', array('jquery')); 
-        wp_enqueue_script('benefits-js'); // Enqueue it!
-    
-    
-        wp_register_script('learning-js', get_template_directory_uri() . '/js/learning.js', array('jquery')); 
-        wp_enqueue_script('learning-js'); // Enqueue it!
-
-        wp_register_script('fullpage-js', get_template_directory_uri() . '/js/jquery.fullPage.js', array('jquery')); 
-        wp_enqueue_script('fullpage-js'); // Enqueue it!
+        wp_register_script('userscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
+        wp_enqueue_script('userscripts'); // Enqueue it!
     }
 }
 
 // Load HTML5 Blank conditional scripts
-function html5blank_conditional_scripts()
+function conditional_scripts()
 {
-    if (is_page('pagenamehere')) {
-        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-        wp_enqueue_script('scriptname'); // Enqueue it!
+    if (is_home() || is_front_page()) {
+        wp_register_script('easing', get_template_directory_uri() . '/js/venders/jquery.easings.min.js', array('jquery')); 
+        wp_enqueue_script('easing'); // Enqueue it!
+
+        wp_register_script('slimscroll', get_template_directory_uri() . ' /js/venders/jquery.slimscroll.min.js', array('jquery')); 
+        wp_enqueue_script('slimscroll'); // Enqueue it!
+
+        wp_register_script('fullpage-js', get_template_directory_uri() . '/js/jquery.fullpage.js', array('jquery')); 
+        wp_enqueue_script('fullpage-js'); // Enqueue it!
+
+  
     }
-}
+}  
 
 // Load HTML5 Blank styles
-function html5blank_styles()
+function load_styles()
 {
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.min.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
@@ -164,16 +168,15 @@ function html5blank_styles()
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
 
-
     wp_register_style('master', get_template_directory_uri() . '/css/master.css', array(), '1.0', 'all');
     wp_enqueue_style('master'); // Enqueue it!
+}
 
-    wp_register_style('fullpage-css', get_template_directory_uri() . '/css/jquery.fullPage.css', array(), '1.0', 'all');
-    wp_enqueue_style('fullpage-css'); // Enqueue it!
-
-    wp_register_style('examples-css', get_template_directory_uri() . '/css/examples.css', array(), '1.0', 'all');
-    wp_enqueue_style('examples-css'); // Enqueue it!
-
+function conditional_styles() {
+    if (is_home() || is_front_page()) {
+        wp_register_style('fullpage-css', get_template_directory_uri() . '/css/jquery.fullPage.css', array(), '1.0', 'all');
+        wp_enqueue_style('fullpage-css'); // Enqueue it! 
+    }
 }
 
 // Register HTML5 Blank Navigation
@@ -395,10 +398,11 @@ function html5blankcomments($comment, $args, $depth)
 \*------------------------------------*/
 
 // Add Actions
-add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
-add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
+add_action('init', 'header_scripts'); // Add Custom Scripts to wp_head
+add_action('wp_print_scripts', 'conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
-add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
+add_action('wp_enqueue_scripts', 'load_styles'); // Add Theme Stylesheet
+add_action('wp_enqueue_scripts', 'conditional_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
